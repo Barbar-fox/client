@@ -36,16 +36,19 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a id="navHome" class="nav-link" href="#">Home</a>
+                            <a id="nav-Home" class="nav-link" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a id="navSignIn" class="nav-link" href="#">Sign In</a>
+                            <a id="nav-signIn" class="nav-link" href="#">Sign In</a>
                         </li>
                         <li class="nav-item">
-                            <a id="navSignOut" class="nav-link" href="#">Sign Out</a>
+                            <a id="nav-signOut" class="nav-link" href="#">Sign Out</a>
                         </li>
                         <li class="nav-item">
-                            <a id="navSignUp" class="nav-link" href="#">Sign Up</a>
+                            <a id="nav-SignUp" class="nav-link" href="#">Sign Up</a>
+                        </li>
+                        <li class="ngaps-icon" id="nav-gSignOut">
+                            <a class="nav-gSignOut" href="#" onclick="signOut();">Sign out</a>
                         </li>
                     </ul>
                 </div>
@@ -53,6 +56,21 @@
         </nav>
     </navbar>
     <!-- Navbar End -->
+    
+    <!-- id=navbar class="logo" class="nav-list"-->
+    <!-- navbar Dedi-->
+    <!--
+    <div class="navbar" id="navbar">
+        <p class="logo" id="logo">BOOK.ME</p>
+        <ul class="nav-list">
+            <li id="nav-signIn">Sign in</li>
+            <li id="nav-signOut">Sign out</li>
+            <li class="ngaps-icon" id="nav-gSignOut">
+                <a class="nav-gSignOut" href="#" onclick="signOut();">Sign out</a>
+            </li>
+        </ul>
+    </div>
+    -->
 
     <!-- Form register user start -->
     <div id="signUpForm" class = "container">
@@ -79,12 +97,37 @@
                         </form>
                     </div>
                 </div>
-            </div>
+
+    <!-- welcome -->
+    <div class="welcome" id="welcome">
+        <img src="./assets/undraw_coming_home_52ir.svg" alt="hotel" class="welcome-img">
+        <div>
+            <p>
+                Mau tidur sama siapa?<br>
+                Booking dulu aja...
+            </p>
+            <button class="btn-to-hotels btn btn-dark">Hotelnya</button>
         </div>
     </div>
-    <!-- Form register end -->
+    
+    <!-- Form login -->
+    <div class="sign-container" id="signIn-container">
+        <form id="signIn-form" class="signIn-form">
+            <label for="email">Email:</label>
+            <input class="form-control" type="email" id="login-email">
 
+            <label for="password">Password:</label>
+            <input class="form-control" type="password" id="login-password">
 
+            <div class="signIn-register">
+                <button class="btn btn-light my-4" id="btn-signIn">Sign in</button>
+                <p id="btn-register">Sign up for BOOK.ME</p>
+            </div>
+            
+            <div class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
+        </form>
+    </div>    
+    
     <!-- Show list hotel when not sign in start -->
     <div class="container" id="hotelListSignIn">
         <div class="row justify-content-md-center">
