@@ -53,7 +53,7 @@
     </div>
 
     <!-- login -->
-    <div class="signIn-container" id="signIn-container">
+    <div class="sign-container" id="signIn-container">
         <form id="signIn-form" class="signIn-form">
             <label for="email">Email:</label>
             <input class="form-control" type="email" id="login-email">
@@ -61,15 +61,18 @@
             <label for="password">Password:</label>
             <input class="form-control" type="password" id="login-password">
 
-            <button class="btn btn-light my-4" id="btn-signIn">Sign in</button>
+            <div class="signIn-register">
+                <button class="btn btn-light my-4" id="btn-signIn">Sign in</button>
+                <p id="btn-register">Sign up for BOOK.ME</p>
+            </div>
             
             <div class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
         </form>
     </div>
 
     <!-- Form register user begin -->
-    <div id="registerForm" class = "">
-        <div class="card" style="width: 18rem">
+    <div id="registerForm" class = "sign-container"">
+        <div style="width: 18rem">
             <h2 class="text-center pt-2">Register</h2>
             <hr>
             <div class="card-body">
@@ -87,7 +90,7 @@
                         <label for="registerPassword">Password</label>
                         <input type="password" class="form-control" id="registerPassword">
                     </div>
-                    <button type="submit" id="submitRegister" class="btn btn-primary">Register</button>
+                    <button type="submit" id="submitRegister" class="btn btn-light">Register</button>
                 </form>
             </div>
         </div>

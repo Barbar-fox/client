@@ -50,8 +50,8 @@
     width: 750px;
 }
 
-.signIn-container{
-    background-color: rgb(221, 221, 221);
+.sign-container{
+    background-color: rgb(63, 61, 86);
     width: 350px;
     padding: 20px;
     position: absolute;
@@ -60,13 +60,32 @@
     border-radius: 0 0 0 10px;
 }
 
-.signIn-form {
+.sign-container form label{
+    color: #ffffff;
+}
+
+.sign-form {
     display: flex;
     flex-direction: column;
 }
 
-.signIn-form input{
+.sign-form input{
     margin-bottom: 10px;
+}
+
+.signIn-register {
+    display: flex;
+    align-items: center;
+}
+
+.signIn-register p{
+    margin: 0 0 0 30px;
+    color: #ffffff;
+}
+
+.signIn-register p:hover{
+    cursor: pointer;
+    color: #d4d4d4;
 }
 
 .g-signin2 {

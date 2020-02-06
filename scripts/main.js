@@ -5,6 +5,7 @@ let gToken = localStorage.getItem('gToken')
 
 function welcomePage() {
     $('#signIn-container').hide()
+    $('#registerForm').hide()
     $('#welcome').show()
     $('#nav-signIn').show()
     $('#nav-signOut').hide()
@@ -42,6 +43,8 @@ $(document).ready(function() {
     $('#nav-signIn').on('click', () => {
         $('#signIn-container').show()
         $('#welcome').show()
+        $("#registerForm").hide()
+        $('#nav-signIn').hide()
     })
 
     // function on submit sign in form
@@ -56,8 +59,9 @@ $(document).ready(function() {
     })
 
    //function on click register
-   $("nav#navRegister").on("click", function(el) {
+   $("#btn-register").on("click", function(el) {
       el.preventDefault()
+      $('#nav-signIn').show()
       $("div#registerForm").show()
       $("#submitRegister").on("click", function(e) {
          e.preventDefault()
