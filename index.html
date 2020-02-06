@@ -28,7 +28,44 @@
     <title>BOOK.ME</title>
 </head>
 <body>
-    
+    <!-- navbar -->
+    <div class="navbar" id="navbar">
+        <p class="logo" id="logo">BOOK.ME</p>
+        <ul class="nav-list">
+            <li id="nav-signIn">Sign in</li>
+            <li id="nav-signOut">Sign out</li>
+            <li class="ngaps-icon" id="nav-gSignOut">
+                <a class="nav-gSignOut" href="#" onclick="signOut();">Sign out</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- welcome -->
+    <div class="welcome" id="welcome">
+        <img src="./assets/undraw_coming_home_52ir.svg" alt="hotel" class="welcome-img">
+        <div>
+            <p>
+                Mau tidur sama siapa?<br>
+                Booking dulu aja...
+            </p>
+            <button class="btn-to-hotels btn btn-dark">Hotelnya</button>
+        </div>
+    </div>
+
+    <!-- login -->
+    <div class="signIn-container" id="signIn-container">
+        <form id="signIn-form" class="signIn-form">
+            <label for="email">Email:</label>
+            <input class="form-control" type="email" id="login-email">
+
+            <label for="password">Password:</label>
+            <input class="form-control" type="password" id="login-password">
+
+            <button class="btn btn-light my-4" id="btn-signIn">Sign in</button>
+            
+            <div class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
+        </form>
+    </div>
 
     <!-- Form register user begin -->
     <div id="registerForm" class = "">
