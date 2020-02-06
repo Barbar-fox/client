@@ -1,4 +1,5 @@
 // show hide element
+
 let token = localStorage.getItem('token')
 let gToken = localStorage.getItem('gToken')
 
@@ -11,7 +12,8 @@ function welcomePage() {
     // $('#nav-gSignOut').show()
 }
 
-$(document).ready(() => { 
+$(document).ready(function() {
+    // token available
     if (token) {
         $('#logo').on('click', () => {
             welcomePage()
@@ -26,7 +28,7 @@ $(document).ready(() => {
             $('#nav-signOut').show()
             $('#nav-gSignOut').hide()
         }
-    } else {
+    } else { // token unavailable
         welcomePage()
         $('#logo').on('click', () => {
             welcomePage()
@@ -36,18 +38,33 @@ $(document).ready(() => {
         })
     }
 
+    // function on click sign in
     $('#nav-signIn').on('click', () => {
         $('#signIn-container').show()
         $('#welcome').show()
     })
 
+    // function on submit sign in form
     $('#signIn-form').on('submit', (event) => {
         event.preventDefault()
         login()
     })
 
+    // function on click sign out
     $('#nav-signOut').on('click', () => {
         logout()
-        // $('#welcome').show()
     })
+
+   //function on click register
+   $("nav#navRegister").on("click", function(el) {
+      el.preventDefault()
+      $("div#registerForm").show()
+      $("#submitRegister").on("click", function(e) {
+         e.preventDefault()
+         register()
+      })
+   })
+
+
+   
 })
