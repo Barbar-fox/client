@@ -4,3 +4,81 @@
     box-sizing: border-box;
     font-family: 'Maven Pro', sans-serif;;
 }
+
+.navbar {
+    /* border: 1px solid black; */
+    border-bottom: 1px solid rgb(224, 224, 224);
+    margin-bottom: 10px;
+}
+
+.logo {
+    font-family: 'Lalezar', cursive;
+    font-weight: bold;
+    font-size: 2.5rem;
+    justify-self: center;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+}
+
+.nav-list li {
+    margin: auto 10px;
+}
+
+.nav-list li:hover {
+    cursor: pointer;
+}
+
+.welcome {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.welcome p {
+    font-size: 2rem;
+}
+
+.welcome-img {
+    width: 750px;
+}
+
+.signIn-container{
+    background-color: rgb(221, 221, 221);
+    width: 350px;
+    padding: 20px;
+    position: absolute;
+    right: 0;
+    top: 15%;
+    border-radius: 0 0 0 10px;
+}
+
+.signIn-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signIn-form input{
+    margin-bottom: 10px;
+}
+
+.g-signin2 {
+    align-self: center;
+}
+
+.nav-gSignOut {
+    font-style: none;
+    color: rgb(19, 19, 19);
+}
+
+.nav-gSignOut:hover {
+    text-decoration: none;
+    color: rgb(19, 19, 19);
+}
