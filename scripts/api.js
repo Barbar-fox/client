@@ -203,15 +203,20 @@ function getBookingForm(hotelId) {
    })
    .done(hotel => {
       console.log(hotel)
+      $("#form-booking").empty()
       $("#form-booking").append(
          `
-            <input readonly type="text" id="hotelName" value="${hotel.name}"></input>
-            <input readonly type="text" id="hotelLocation" value="${hotel.location}"></input>
-            <input readonly type="text" id="hotelPrice" value="${hotel.price}"></input>
-            <label for="bookDate">mulai menginap tanggal:</label><br>
-            <input type="date" id="bookDate"></input>
+            <h5>Booking Form</h5>
+            <label>Hotel:</label>
+            <input class="form-control" readonly type="text" id="hotelName" value="${hotel.name}"></input>
+            <label>Location</label>
+            <input class="form-control" readonly type="text" id="hotelLocation" value="${hotel.location}"></input>
+            <label>Price:</label>
+            <input class="form-control" readonly type="text" id="hotelPrice" value="${hotel.price}"></input>
+            <label for="bookDate">mulai menginap tanggal:</label>
+            <input class="form-control" type="date" id="bookDate"></input>
 
-            <input type="submit" value="Booking" onclick="booking(${hotel.id})"></input>
+            <input class="btn btn-dark mt-3" type="submit" value="Booking" onclick="booking(${hotel.id})"></input>
          `
       )
    })
@@ -235,6 +240,8 @@ function booking(hotelId) {
    })
    .done(response => {
       console.log('success booking')
+      $("#form-booking").hide()
+      $('#bookingList').show()
    })
    .fail(err => {
       console.log("failed get hotel")
