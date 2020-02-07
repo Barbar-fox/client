@@ -69,7 +69,7 @@ auth2.signOut().then(function () {
 }
 
 function register() {
-   console.log("success")
+   // console.log("success")
    $.ajax({
       method: "POST",
       url : "http://localhost:3000/register",
@@ -81,8 +81,9 @@ function register() {
    })
       .done(user => {
          console.log("success register")
-         console.log(user)
-         $("div#registerForm").hide()
+         // console.log(user)
+         $("div#signUpForm").hide()
+         // $("div#") PERGI KE LOGIN
       })
       .fail(err => {
          console.log("fail register")
