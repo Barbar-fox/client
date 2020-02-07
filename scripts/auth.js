@@ -27,7 +27,8 @@ function login() {
 
    //  welcomePage()
    $('#welcome').hide()
-   $("#hotelListSignIn").show()
+   $("#hotelListSignOut").show()
+   fetchHotel()
    $('#signIn-container').hide()
    $('#nav-signIn').hide()
    signOutCondition()
@@ -76,7 +77,7 @@ function register() {
    // console.log("success")
    $.ajax({
       method: "POST",
-      url : "http://localhost:3000/register",
+      url : "http://localhost:3000/users/register",
       data : {
          name : $("#registerName").val(),
          email : $("#registerEmail").val(),
@@ -86,7 +87,9 @@ function register() {
       .done(user => {
          console.log("success register")
          // console.log(user)
-         $("div#signUpForm").hide()
+         $("#signUpForm").hide()
+         $('#nav-signIn').show()
+         $("#signIn-form").show()
          // $("div#") PERGI KE LOGIN
       })
       .fail(err => {
