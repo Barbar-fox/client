@@ -82,10 +82,6 @@ function weather() {
     $('#weather-icon').append(weatherIcon)
 }
 
-function navAuthentication() {
-
-}
-
 $(document).ready(function() {
    showHome()
 
@@ -154,7 +150,8 @@ $(document).ready(function() {
    $('#hotels').on('click', function() {
       if (token) {
          $('#welcome').hide()
-         $("#hotelListSignIn").show()
+         $("#hotelListSignOut").show()
+         fetchHotel()
       } else {
          // showHome()
          $('#signIn-container').toggle("slow", function() {
