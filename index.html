@@ -31,13 +31,19 @@
     <!-- navbar -->
     <div class="navbar" id="navbar">
         <p class="logo" id="logo">BOOK.ME</p>
-        <ul class="nav-list">
-            <li id="nav-signIn">Sign in</li>
-            <li id="nav-signOut">Sign out</li>
-            <li class="ngaps-icon" id="nav-gSignOut">
-                <a class="nav-gSignOut" href="#" onclick="signOut();">Sign out</a>
-            </li>
-        </ul>
+        <div class="weather-sign">
+            <div class="weather mx-5 my-0 py-0">
+                <p id="date" class="mx-2"></p>
+                <div id="weather-icon"></div>
+            </div>
+            <ul class="nav-list">
+                <li id="nav-signIn">Sign in</li>
+                <li id="nav-signOut">Sign out</li>
+                <li class="ngaps-icon" id="nav-gSignOut">
+                    <a class="nav-gSignOut" href="#" onclick="signOut();">Sign out</a>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <!-- welcome -->

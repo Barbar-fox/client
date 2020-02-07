@@ -22,6 +22,20 @@
     cursor: pointer;
 }
 
+.weather-sign {
+    display: flex;
+}
+
+.weather {
+    height: max-content;
+    display: flex;
+    align-items: center;
+}
+
+#date {
+    margin: 0;
+}
+
 .nav-list {
     display: flex;
     list-style: none;
