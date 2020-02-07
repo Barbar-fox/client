@@ -211,3 +211,19 @@
     text-decoration: none;
     color: rgb(19, 19, 19);
 }
+
+.add-booking {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.form-booking {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-booking input{
+    width: 100%;
+}

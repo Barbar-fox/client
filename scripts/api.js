@@ -240,7 +240,59 @@ function cancelBooking(id) {
 function convertDate (date) {
    return `${new Date(date).getFullYear()}/${new Date(date).getMonth()}/${new Date(date).getDate()}`
 }
+function getBookingForm(hotelId) {
+   $("#hotelListSignOut").hide()
+   $("#form-booking").show()
 
-$(document).ready(function() {
-   
-})
+   $.ajax({
+      method: 'GET',
+      url : `http://localhost:3000/hotels/${hotelId}`
+   })
+   .done(hotel => {
+      console.log(hotel)
+      $("#form-booking").empty()
+      $("#form-booking").append(
+         `
+            <h5>Booking Form</h5>
+            <label>Hotel:</label>
+            <input class="form-control" readonly type="text" id="hotelName" value="${hotel.name}"></input>
+            <label>Location</label>
+            <input class="form-control" readonly type="text" id="hotelLocation" value="${hotel.location}"></input>
+            <label>Price:</label>
+            <input class="form-control" readonly type="text" id="hotelPrice" value="${hotel.price}"></input>
+            <label for="bookDate">mulai menginap tanggal:</label>
+            <input class="form-control" type="date" id="bookDate"></input>
+
+            <input class="btn btn-dark mt-3" type="submit" value="Booking" onclick="booking(${hotel.id})"></input>
+         `
+      )
+   })
+   .fail(err => {
+      console.log("failed get hotel")
+      console.log(err)
+   })
+}
+
+function booking(hotelId) {
+   $.ajax({
+      method: 'POST',
+      url : `http://localhost:3000/bookings`,
+      headers: {
+         token: localStorage.getItem('token')
+      },
+      data: {
+         HotelId : hotelId,
+         date: $("#bookDate").val()
+      }
+   })
+   .done(response => {
+      console.log('success booking')
+      $("#form-booking").hide()
+      $('#bookingList').show()
+   })
+   .fail(err => {
+      console.log("failed get hotel")
+      console.log(err)
+   })
+}
+
