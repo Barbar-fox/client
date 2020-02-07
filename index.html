@@ -29,7 +29,7 @@
 <body>
     
     <!-- Navbar Start -->
-    <navbar>
+    <!-- <navbar>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="navbar-wrapper">
                 <a class="navbar-brand" href="#"><b>Book.Me</b></a>
@@ -54,12 +54,11 @@
                 </div>
             </div>
         </nav>
-    </navbar>
+    </navbar> -->
     <!-- Navbar End -->
     
     <!-- id=navbar class="logo" class="nav-list"-->
     <!-- navbar Dedi-->
-    <!--
     <div class="navbar" id="navbar">
         <p class="logo" id="logo">BOOK.ME</p>
         <div class="weather-sign">
@@ -71,19 +70,18 @@
                 <li id="nav-signIn">Sign in</li>
                 <li id="nav-signOut">Sign out</li>
                 <li class="ngaps-icon" id="nav-gSignOut">
-                    <a class="nav-gSignOut" href="#" onclick="signOut();">Sign out</a>
+                    <p class="nav-gSignOut" href="#" onclick="signOut();" style="cursor: pointer;">Sign out</p>
                 </li>
             </ul>
         </div>
     </div>
-    -->
 
     <!-- Form register user start -->
-    <div id="signUpForm" class = "container">
-        <div class="row justify-content-md-center">
-            <div class="col col-md-auto">
-                <h1 class="text-center">Sign Up</h1>
-                <div class="card" style="width: 18rem">
+    <div class="sign-container" id="signUpForm" class = "container">
+    <div>
+            <div>
+                <!-- <h1 class="text-center">Sign Up</h1> -->
+                <div style="width: 18rem">
                     <div class="card-body">
                         <form class="pb-3">
                             <div class="form-group">
@@ -103,6 +101,9 @@
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
     <!-- welcome -->
     <div class="welcome" id="welcome">
@@ -112,7 +113,7 @@
                 Mau tidur sama siapa?<br>
                 Booking dulu aja...
             </p>
-            <button class="btn-to-hotels btn btn-dark">Hotelnya</button>
+            <button class="btn-to-hotels btn btn-dark" id="hotels">Hotelnya</button>
         </div>
     </div>
     
