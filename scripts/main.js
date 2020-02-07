@@ -49,6 +49,24 @@ function welcomePage() {
    // $('#nav-gSignOut').show()
 }
 
+function weather() {
+    let weatherIcon = ''
+
+    if (new Date()) {
+        weatherIcon = '<i class="fas fa-cloud-rain mx-2"></i>'
+    } else {
+        weatherIcon = '<i class="fas fa-cloud-rain mx-2"></i>'
+        weatherIcon = '<i class="fas fa-cloud-showers-heavy mx-2"></i>'
+        weatherIcon = '<i class="fas fa-cloud mx-2"></i>'
+        weatherIcon = '<i class="fas fa-wind mx-2"></i>'
+        weatherIcon = '<i class="fas fa-sun mx-2"></i>'
+        weatherIcon = '<i class="fas fa-umbrella mx-2"></i>'
+        weatherIcon = '<i class="fas fa-bolt mx-2"></i>'
+    }
+    $('#date').append(`${new Date().toDateString()}`)
+    $('#weather-icon').append(weatherIcon)
+}
+
 $(document).ready(function() {
    showHome()
    //function to get homepage
@@ -90,6 +108,17 @@ $(document).ready(function() {
       $("#signUpForm").hide()
       $('#nav-signIn').hide()
    })
+  
+    //show weather
+    weather()
+
+    // function on click sign in
+    $('#nav-signIn').on('click', () => {
+        $('#signIn-container').show()
+        $('#welcome').show()
+        $("#registerForm").hide()
+        $('#nav-signIn').hide()
+    })
 
    // function on submit sign in form
    $('#signIn-form').on('submit', (event) => {
