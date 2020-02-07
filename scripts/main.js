@@ -100,7 +100,7 @@ $(document).ready(function() {
    } else { // token unavailable
       welcomePage()
       $('#nav-signOut').hide()
-      $('#nav-gSignOut').hide()
+      $('#nav-gSignOut').show()
       $('#logo').on('click', () => {
          welcomePage()
          $('#nav-signIn').show()

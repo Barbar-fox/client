@@ -193,6 +193,10 @@ function cancelBooking(id) {
    })
 }
 
+function getBookingForm(hotelId) {
+   console.log(hotelId)
+}
+
 
 $(document).ready(function() {
    
