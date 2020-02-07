@@ -175,7 +175,7 @@
             <div class="col-md-offset-2 custyle col-md-10">
                 <div>
                     <h1>List Hotel</h1>
-                    <a href="#" class="btn btn-primary btn-xs pull-right" onclick="fetchHotel()">My Booking</a> <!-- cek token -->
+                    <a href="#" class="btn btn-primary btn-xs pull-right" id="showBookingList">My Booking</a> <!-- cek token -->
                 </div>
                 <table class="table table-striped custab">
                     <thead>
@@ -209,28 +209,30 @@
         <div class="row justify-content-md-center">
             <div class="col-md-auto">
                 <h1>Booking List</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Hotel</th>
-                            <th>Location</th>
-                            <th>Price</th>
-                            <th>Booking Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="showListOfBooking">
-                        <!-- Dummy
-                        <tr>
-                            <td>Bcd</td>
-                            <td>Jakarta</td>
-                            <td>250000</td>
-                            <td>20-10-2019</td>
-                            <td>Detail || Cancel</td>
-                        </tr>
-                        -->
-                    </tbody>
-                </table>
+                <div>
+                    <table class="table table-striped custab">
+                        <thead>
+                            <tr>
+                                <th>Hotel</th>
+                                <th>Location</th>
+                                <th>Price</th>
+                                <th>Booking Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="showListOfBooking">
+                            <!-- Dummy
+                            <tr>
+                                <td>Bcd</td>
+                                <td>Jakarta</td>
+                                <td>250000</td>
+                                <td>20-10-2019</td>
+                                <td>Detail || Cancel</td>
+                            </tr>
+                            -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -282,7 +284,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h5>Booking Detail</h5>
+                <h5>Booking Update</h5>
             </div>
             <div class="modal-body">
                 <form id="bookingUpdate">

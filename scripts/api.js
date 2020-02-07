@@ -54,25 +54,47 @@ function fetchBooking() {
       }
    })
       .done(bookings => {
-         bookings.forEach(Booking => {
-            $("#showListOfBooking").append(
-               `
+         // console.log(bookings.data.length)
+         if(bookings.data.length === 0) {
+            $("#showListOfBooking").html(
+            `
                <tr>
-                  <td>${Booking.name}</td>
-                  <td>${Booking.location}</td>
-                  <td>${Booking.price}</td>
+                  <td>N/A</td>
+                  <td>N/A</td>
+                  <td>N/A</td>
+                  <td>N/A</td>
+                  <td class="text-center">
+                     <a class="btn btn-info" href="#">N/A</a>
+                  </td>
+               </tr>
+            `) 
+         } else {
+         // console.log(bookings.data[0].UserHotels)
+            let data = ``              
+            bookings.data[0].UserHotels.forEach(Booking => {
+               data +=  `<tr>
+                  <td>${Booking.Hotel.name}</td>
+                  <td>${Booking.Hotel.location}</td>
+                  <td>${Booking.Hotel.price}</td>
                   <td>${Booking.date}</td>
                   <td class="text-center">
-                     <a class="btn btn-info" href="#" onclick="getModalBookingDetail(${hotel.id})">Detail</a>
+                     <a class="btn btn-info" href="#" onclick="getModalBookingDetail(${Booking.id})">Detail</a>
                   </td>
                </tr>
                `
-            )
-         })
+            })
+            $("#showListOfBooking").html(data)
+         }
+      })
+      .fail(err => {
+         console.log('error fetch booking')
+         console.log(err)
       })
 }
 
 function getModalBookingDetail(id) {
+   $("#bookingList").hide()
+   $("#modalBookingDetail").show()
    $.ajax({
       method: 'GET',
       url : `http://localhost:3000/bookings/${id}`,
@@ -81,25 +103,36 @@ function getModalBookingDetail(id) {
       }
    })
    .done(booking => {
-      console.log("success get booking detail")
-      // console.log(booking)
-      $("#bookingDetail").append(
+      // console.log("success get booking detail")
+      // console.log(booking.Hotel.name)
+      let zomato =  []
+      booking.resto.forEach((restaurant, i) => {
+         if(i<5) {
+            zomato.push(restaurant.title)
+         }
+         
+      })
+      $("#bookingDetail").html(
          `
-         <label>Hotel</label>
-         <input readonly>${booking.name}<br>
-         <label>Location</label>
-         <input readonly>${booking.location}<br>
-         <label>Price</label>
-         <input readonly>${booking.price}<br>
          <label>Booking Date</label>
-         <input readonly>${booking.date}<br>
+         <input readonly value="${convertDate(booking.date)}"><br>
+         <label>Change Date</label>
+         <input type="date" id="updateDate"><br><br>
+
+         <label>Hotel</label>
+         <input type="text" readonly value="${booking.Hotel.name}"><br>
+         <label>Location</label>
+         <input readonly value="${booking.Hotel.location}"><br>
+         <label>Price</label>
+         <input readonly value="${booking.Hotel.price}"><br>
          <label>Restaurant near place</label>
-         <input readonly>${booking.resto}<br>
+         <input readonly value="${zomato.join(',')}"><br>
          <label>Weather</label>
-         <input readonly>${booking.weather}<br>
-         <a class="btn btn-info" href="#" onclick="getUpdateModalBooking(${booking.id})">Change Booking Date</a>
+         <input readonly value="${booking.weather}"><br>
+         <small>${booking.holiday.isHoliday ? "anda kena harga tambahan karena hari libur" : "" }</small><br>
+         <a class="btn btn-info" onclick="confirmUpdate(${booking.id}, ${booking.HotelId})">Change Booking Date</a><br>
          <small>Dengan mengganti tanggal maka staff akan mengecek ketersediaan dan akan dikenai biaya tambahan</small><br>
-         <a class="btn btn-info" href="#" onclick="cancelBooking(${booking.id})">Cancel Booking</a>
+         <a class="btn btn-info" href="#" onclick="showModalCancelBooking(${booking.id})">Cancel Booking</a><br>
          <small>Dengan membatalkan maka akan dikenai charge</small>
          `
       )
@@ -110,52 +143,59 @@ function getModalBookingDetail(id) {
    })
 }
 
-function getUpdateModalBooking(id) {
-   $.ajax({
-      method: 'GET',
-      url : `http://localhost:3000/bookings/${id}`,
-      headers : {
-         token : localStorage.token
-      }
-   })
-   .done(booking => {
-      console.log("success update booking detail")
-      // console.log(booking)
-      $("#bookingUpdate").append(
-         `
-         <small>Change booking date</small>
-         <label>Booking Date</label>
-         <input type="date">${booking.date}<br>
+// function getUpdateModalBooking(id) {
+//    $("modalBookingDetail").hide()
+//    $("modalBookingUpdate").show()
+//    $.ajax({
+//       method: 'GET',
+//       url : `http://localhost:3000/bookings/${id}`,
+//       headers : {
+//          token : localStorage.token
+//       }
+//    })
+//    .done(booking => {
+//       console.log("success update booking detail")
+//       console.log(booking)
+//       $("#bookingUpdate").append(
+//          `
+//          <label>Booking Date</label>
+//          <input value="${booking.date}"><br>
+         
+//          <label>Hotel</label>
+//          <input readonly value="${booking.Hotel.name}"><br>
+//          <label>Location</label>
+//          <input readonly value="${booking.Hotel.location}"><br>
+//          <label>Price</label>
+//          <input readonly value="${booking.Hotel.price}"><br>
+         
+//          <a class="btn btn-info" href="#" onclick="confirmUpdate(${booking.id}, ${booking.HotelId}, ${booking.date})">Change Booking Date</a>
+//          <small>Dengan mengganti tanggal maka staff akan mengecek ketersediaan dan akan dikenai biaya tambahan</small><br>
+//          <a class="btn btn-info" href="#" onclick="showModalCancelBooking(${booking.id})">Cancel Booking</a>
+//          <small>Dengan membatalkan maka akan dikenai charge</small>
+//          `
+//       )
+//    })
+//    .fail(err => {
+//       console.log("failed get booking detail")
+//       console.log(err)
+//    })
+// }
 
-         <small>Hotel detail</small>
-         <label>Hotel</label>
-         <input readonly> ${booking.name}<br>
-         <label>Location</label>
-         <input readonly>${booking.location}<br>
-         <label>Price</label>
-         <input readonly>${booking.price}<br>
-         <a class="btn btn-info" href="#" onclick="confirmUpdate(${booking.id}, ${booking.date})">Change Booking Date</a>
-         <small>Dengan mengganti tanggal maka staff akan mengecek ketersediaan dan akan dikenai biaya tambahan</small><br>
-         <a class="btn btn-info" href="#" onclick="showModalCancelBooking(${booking.id})">Cancel Booking</a>
-         <small>Dengan membatalkan maka akan dikenai charge</small>
-         `
-      )
-   })
-   .fail(err => {
-      console.log("failed get booking detail")
-      console.log(err)
-   })
-}
-
-function confirmUpdate(id, newDate) {
+function confirmUpdate(id, HotelId) {
+   console.log('confirm')
    $.ajax({
       url: `http://localhost:3000/bookings/${id}`,
       method: 'PUT',
+      headers : {
+         token : localStorage.token
+      },
       data: {
-         date : newDate
+         HotelId,
+         date : convertDate($("#updateDate").val())
       }
    })
       .done(booking => {
+         console.log(booking)
          console.log("update success")
          $("#modalBookingUpdate").hide()
          $("#bookingList").show()
@@ -167,6 +207,8 @@ function confirmUpdate(id, newDate) {
 }
 
 function showModalCancelBooking(id) {
+   $("#modalBookingUpdate").hide()
+   $("#modalBookingDetail").hide()
    $("#modalCancelBooking").show()
    $("#cancelBookingConfirm").on("click", function(el) {
       el.preventDefault()
@@ -177,7 +219,7 @@ function showModalCancelBooking(id) {
 function cancelBooking(id) {
    $.ajax({
       method: 'DELETE',
-      url : `http://localhost:3000/books/${id}`,
+      url : `http://localhost:3000/bookings/${id}`,
       headers : {
          token : localStorage.token
       }
@@ -186,6 +228,8 @@ function cancelBooking(id) {
       console.log("delete success")
       console.log(booking)
       $("#modalCancelBooking").hide()
+      fetchBooking()
+      $("#bookingList").show()
    })
    .fail(err => {
       console.log("delete failed")
@@ -193,6 +237,9 @@ function cancelBooking(id) {
    })
 }
 
+function convertDate (date) {
+   return `${new Date(date).getFullYear()}/${new Date(date).getMonth()}/${new Date(date).getDate()}`
+}
 
 $(document).ready(function() {
    

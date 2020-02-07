@@ -22,7 +22,7 @@ function login() {
     //         console.log('complete')
     //     })
 
-    localStorage.setItem('token', 'hvihbik')
+    localStorage.setItem('token', 'heyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNTgxMDU3OTI4fQ.W_XVCSAzdW4Qudhm1kgRcmj2D9NVfZce8JdKIdoDIFc')
     // localStorage.setItem('gToken', 'hvihbik')
 
    //  welcomePage()
