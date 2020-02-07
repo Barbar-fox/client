@@ -3,35 +3,29 @@
 function login() {
     console.log($('#login-email').val())
     console.log($('#login-password').val())
-    // $.ajax("http://localhost:3000/users/login", {
-    //     method: 'POST',
-    //     data: {
-    //         email: $('#login-email').val(),
-    //         password: $('#login-password').val()
-    //     }
-    // })
-    //     .done(response => {
-    //         localStorage.setItem('token', response.token)
-    //         location.reload(true)
-    //         homePage()
-    //     })
-    //     .fail(err => {
-    //         console.log(err)
-    //     })
-    //     .always(_ => {
-    //         console.log('complete')
-    //     })
-
-    localStorage.setItem('token', 'hvihbik')
-    // localStorage.setItem('gToken', 'hvihbik')
-
-   //  welcomePage()
-   $('#welcome').hide()
-   $("#hotelListSignOut").show()
-   fetchHotel()
-   $('#signIn-container').hide()
-   $('#nav-signIn').hide()
-   signOutCondition()
+    $.ajax("http://localhost:3000/users/login", {
+        method: 'POST',
+        data: {
+            email: $('#login-email').val(),
+            password: $('#login-password').val()
+        }
+    })
+        .done(response => {
+            console.log(response.token)
+            localStorage.setItem('token', response.token)
+            $('#welcome').hide()
+            $("#hotelListSignOut").show()
+            fetchHotel()
+            $('#signIn-container').hide()
+            $('#nav-signIn').hide()
+            signOutCondition()
+        })
+        .fail(err => {
+            console.log(err)
+        })
+        .always(_ => {
+            console.log('complete')
+        })
 }
 
 function logout() {
@@ -46,22 +40,28 @@ function onSignIn(googleUser) {
     
     localStorage.setItem('gToken', token)
 
-    // $.ajax("http://localhost:3000/users/gSignIn", {
-    //     method: 'POST',
-    //     headers: {
-    //         id_token: token
-    //     }
-    // })
-    //     .done(response => {
-    //         localStorage.setItem('token', response.token)
-    //         // afterGSignIn()
-    //     })
-    //     .fail(err => {
-    //         console.log(err)
-    //     })
-    //     .always(_ => {
-    //         console.log('complete g-sign-in')
-    //     })
+    $.ajax("http://localhost:3000/users/gSignIn", {
+        method: 'POST',
+        headers: {
+            idToken: token
+        }
+    })
+        .done(response => {
+            console.log(response.token)
+            localStorage.setItem('token', response.token)
+            $('#welcome').hide()
+            $("#hotelListSignOut").show()
+            fetchHotel()
+            $('#signIn-container').hide()
+            $('#nav-signIn').hide()
+            signOutCondition()
+        })
+        .fail(err => {
+            console.log(err)
+        })
+        .always(_ => {
+            console.log('complete g-sign-in')
+        })
   }
 
 function signOut() {
