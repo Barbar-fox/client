@@ -1,22 +1,23 @@
 // access api
-function authenticationFetch() {
-   let tableNameId
-   if(localStorage.token) {
-      tableNameId = "showListOfHotel"
-   } else {
-      tableNameId = "showListOfHotel2"
-   }
-   fetchHotel(tableNameId)
-}
+// function authenticationFetch() {
+//    let tableNameId
+//    if(localStorage.token) {
+//       tableNameId = "showListOfHotel"
+//    } else {
+//       tableNameId = "showListOfHotel2"
+//    }
+//    fetchHotel(tableNameId)
+// }
 
-function fetchHotel(tableNameId) {
+function fetchHotel() {
    $.ajax({
       method: 'GET',
       url : "http://localhost:3000/hotels",
    })
       .done(hotels => {
          hotels.forEach(hotel => {
-            $(`#${tableNameId}`).append(
+            console.log('success in fetch')
+            $(`#showListOfHotel2`).append(
                `
                <tr>
                   <td>${hotel.name}</td>
@@ -29,6 +30,10 @@ function fetchHotel(tableNameId) {
                `
             )
          })
+      })
+      .fail(err => {
+         console.log('error di fetch')
+         console.log(err)
       })
 }
 
