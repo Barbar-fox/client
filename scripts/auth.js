@@ -25,8 +25,12 @@ function login() {
     localStorage.setItem('token', 'hvihbik')
     // localStorage.setItem('gToken', 'hvihbik')
 
-    welcomePage()
-
+   //  welcomePage()
+   $('#welcome').hide()
+   $("#hotelListSignIn").show()
+   $('#signIn-container').hide()
+   $('#nav-signIn').hide()
+   signOutCondition()
 }
 
 function logout() {
