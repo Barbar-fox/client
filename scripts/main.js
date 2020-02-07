@@ -43,6 +43,7 @@ function welcomePage() {
       signOutCondition()
       $("#hotelListSignOut").hide()
       $("#hotelListSignIn").hide()
+      $("#bookingList").hide()
    } else {
       $('#signIn-container').hide()
       $('#signUpForm').hide()
@@ -51,6 +52,7 @@ function welcomePage() {
       signOutCondition()
       $("#hotelListSignOut").hide()
       $("#hotelListSignIn").hide()
+      $("#bookingList").hide()
    }
 }
 
@@ -161,4 +163,14 @@ $(document).ready(function() {
          })
       }
    })
+
+   $("#showBookingList").on("click", function() {
+      console.log('masuk')
+      $("#hotelListSignOut").hide()
+      // $("#bookingList").empty()
+      $("#bookingList").show()
+      fetchBooking()
+   })
+
+
 })
