@@ -31,6 +31,12 @@ function login() {
 function logout() {
     localStorage.clear()
     location.reload(true)
+    var auth2 = gapi.auth2.getAuthInstance()
+localStorage.clear()
+auth2.signOut().then(function () {
+    location.reload(true)
+    console.log('User signed out.')
+})
 }
 
 function onSignIn(googleUser) {
@@ -66,8 +72,8 @@ function onSignIn(googleUser) {
 
 function signOut() {
 var auth2 = gapi.auth2.getAuthInstance()
+localStorage.clear()
 auth2.signOut().then(function () {
-    localStorage.clear()
     location.reload(true)
     console.log('User signed out.')
 })

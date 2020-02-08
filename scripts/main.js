@@ -172,5 +172,11 @@ $(document).ready(function() {
       fetchBooking()
    })
 
-
+   $(".close").on("click", function(el) {
+      el.preventDefault()
+      $("#modalBookingDetail").hide()
+      $("#modalBookingUpdate").hide()
+      $("#modalCancelBooking").hide()
+      $("#bookingList").show()
+   })
 })

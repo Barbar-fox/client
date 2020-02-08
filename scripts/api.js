@@ -197,6 +197,8 @@ function confirmUpdate(id, HotelId) {
       .done(booking => {
          console.log(booking)
          console.log("update success")
+         fetchBooking()
+         $("#modalBookingDetail").hide()
          $("#modalBookingUpdate").hide()
          $("#bookingList").show()
       })
@@ -238,7 +240,7 @@ function cancelBooking(id) {
 }
 
 function convertDate (date) {
-   return `${new Date(date).getFullYear()}/${new Date(date).getMonth()}/${new Date(date).getDate()}`
+   return `${new Date(date).getFullYear()}/${new Date(date).getMonth()+1}/${new Date(date).getDate()}`
 }
 function getBookingForm(hotelId) {
    $("#hotelListSignOut").hide()
@@ -289,6 +291,7 @@ function booking(hotelId) {
       console.log('success booking')
       $("#form-booking").hide()
       $('#bookingList').show()
+      fetchBooking()
    })
    .fail(err => {
       console.log("failed get hotel")
